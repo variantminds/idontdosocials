@@ -1,0 +1,41 @@
+# top-most EditorConfig file
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+
+# YAML files (e.g., _config.yml, front matter)
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# HTML files
+[*.{htm,html,liquid}]
+indent_style = space
+indent_size = 2
+
+# SCSS files
+[*.{css,scss}]
+indent_style = space
+indent_size = 2
+
+# JavaScript files (if used)
+[*.js]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+insert_final_newline = true
