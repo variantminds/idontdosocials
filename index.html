@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/img/logo.min.svg" type="image/svg+xml">
   <title>No, I don't do social media</title>
   <link rel="stylesheet" href="assets/css/bootlace.min.css">
   <style>
@@ -123,6 +124,9 @@
       margin-bottom: 1rem;
     }
 
+    .btn {
+      margin: 0 0.5rem;
+    }
 
     @keyframes fadeInDown {
       from {
@@ -232,17 +236,18 @@
     <div class="cta-section" style="margin-top: 2rem;">
       <h2>Share This Message</h2>
       <p>Help normalize the choice to abstain from social media by sharing this page:</p>
-      <!-- <a class="btn btn-secondary alternative-link" href="#" data-alternative="copy">Copy Link</a> -->
-      <a class="btn btn-secondary" href="mailto:?subject=I%20don't%20have%20social%20media&body=Check%20out%20this%20page%3A%20" class="alternative-link">Email</a>
-      <!-- <a class="btn btn-secondary alternative-link" href="#" data-alternative="print">Print</a> -->
+      <a class="btn btn-primary alternative-link" href="#" data-alternative="copy">Copy Link</a>
+      <a class="btn btn-success" href="mailto:?subject=I%20don't%20have%20social%20media&body=Check%20out%20this%20page%3A%20" class="alternative-link">Email</a>
+      <a class="btn btn-info alternative-link d-none d-lg-inline-block" href="#" data-alternative="print">Print</a>
     </div>
 
   </main>
   <footer class="bg-primary mt-5 text-white">
     <div class="container py-3">
-      <p>Based on peer-reviewed research from 2020-2024.<br>
-        This page is intentionally not shareable on social media 😉.</p>
-      <p>&copy; 2025 VariantMinds.au</p>
+      <div class="row">
+        <div class="col-lg text-center text-lg-start">Based on peer-reviewed research from 2020-2024.</div>
+        <div class="col-lg text-center text-lg-end">&copy; 2025 <a class="text-decoration-none text-body" href="https://variantminds.au">VariantMinds.au</a></div>
+      </div>
     </div>
   </footer>
   <!--
@@ -250,6 +255,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
   -->
   <script>
+    document.querySelectorAll('a[href^="http"]').forEach(function(anchor) {
+      anchor.setAttribute('target', '_blank');
+      anchor.classList.add('external');
+    });
+    document.querySelectorAll('a[data-alternative]').forEach(function(anchor) {
+      let val = anchor.dataset.alternative;
+      if (val) {
+        val = val.toLowerCase();
+        if (val == 'copy') {
+          anchor.onclick = function (event) {
+            event.preventDefault();
+            txt = window.location.href;
+            navigator.clipboard.writeText(txt).then(function() {
+              // alert("Text copied to clipboard");
+            }).catch(function(err) {
+              alert("Failed to copy text: ", err);
+            });
+          }
+        } else if (val == 'print') {
+          anchor.onclick = function (event) {
+            event.preventDefault();
+            window.print();
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
